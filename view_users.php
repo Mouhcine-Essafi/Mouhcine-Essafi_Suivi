@@ -1,39 +1,50 @@
 <?php
 include("config.php");
 
-$select = mysqli_query($conn, "SELECT * FROM users");
 $users = [];
-if ($select->num_rows > 0) {
 
-    while ($fetch = mysqli_fetch_assoc($select)) {
-        $users[] = $fetch;
-    }
+$select = mysqli_query($conn ,"SELECT * FROM users");
+
+
+if ($select->num_rows > 0){
+
+    while($fetch = mysqli_fetch_assoc($select)){
+        $users [] = $fetch ; 
+    };
+
 }
 
-?>
 
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Users</title>
+    <title>Document</title>
 </head>
-
 <body>
-    <h2>View Users</h2>
-    <?php if ($users) ?>
-    <table border="1">
-        <tr>
-            <th>ID</th>
-            <th>Username</th>
-            <th>Email</th>
-        </tr>
+    
 
-        //content here
+<?php  if($users) : ?>
+    <table border ="1">
+    <tr>
+        <th>ID</th>
+        <th>USER NAME</th>
+        <th>EMAIL</th>
+    </tr>
+    <?php  foreach($users as $user): ?>
+    <tr>
+        <th><?php  echo $user['id']  ?></th>
+        <th><?php  echo $user['username']  ?></th>
+        <th><?php  echo $user['email']  ?></th>
+    </tr>
+    <?php   endforeach  ?>    
+</table>
+    
+<?php  else :    ?>
+    <?php   echo 'No users found'; ?>
+<?php endif ;?>
 
-    </table>
 </body>
-
 </html>
