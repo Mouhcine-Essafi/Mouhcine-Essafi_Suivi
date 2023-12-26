@@ -1,27 +1,23 @@
 <?php
-
 include("config.php");
 
 $id = $_GET['id'];
 
+    $select = mysqli_query($conn,"SELECT * FROM users WHERE id = $id") or die(mysqli_error($conn));
 
+    $fetch = mysqli_fetch_assoc($select);
 
-$select = mysqli_query($conn, "SELECT * FROM users WHERE id = $id");
+    if (isset($_POST["submit"])) {
 
-$fetch = mysqli_fetch_assoc($select);
+        $username = $_POST['username'];
+        $email = $_POST['email'];
+        
+        mysqli_query($conn,"UPDATE `users` SET username = '$username' , email = '$email' WHERE id = '$id' ");
 
-if (isset($_POST["submit"])) {
+    }
 
-    $username = $_POST['username'] ;
-    $email = $_POST['email'] ;
-
-   $update = mysqli_query($conn,"UPDATE `users` SET username = '$username' , email = '$email' WHERE id = $id");
-
-}
 
 ?>
-
-
 
 
 
@@ -39,24 +35,20 @@ if (isset($_POST["submit"])) {
 </head>
 
 <body>
-
-
+<form method="post" action="">
     <table border="1">
+
         <tr>
-            <th>User Name</th>
+            <th>User name</th>
             <th>Email</th>
         </tr>
         <tr>
-            <form method="post" action="">
-                <th><input type="text" name="username" placeholder="<?php echo $fetch['username'] ?>"></th>
-                <th><input type="text" name="email" placeholder="<?php echo $fetch['email'] ?>"></th>
-              
+            <th><input type="text" name="username" placeholder="<?php  echo $fetch['username']  ?>" ></th>
+            <th><input type="text" name="email" placeholder="<?php  echo $fetch['email']  ?>"></th>
         </tr>
-       
     </table>
     <button type="submit" name="submit">Submit</button>
-            </form>
-
+    </form>
 </body>
 
 </html>
