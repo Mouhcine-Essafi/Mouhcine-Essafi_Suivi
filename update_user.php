@@ -49,6 +49,8 @@ $id = $_GET['id'];
     </table>
     <button type="submit" name="submit">Submit</button>
     </form>
+    <button ><a href="view_users.php">view users</a></button>
+
 </body>
 
 </html>
