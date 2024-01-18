@@ -43,8 +43,8 @@ $id = $_GET['id'];
             <th>Email</th>
         </tr>
         <tr>
-            <th><input type="text" name="username" placeholder="<?php  echo $fetch['username']  ?>" ></th>
-            <th><input type="text" name="email" placeholder="<?php  echo $fetch['email']  ?>"></th>
+            <th><input type="text" name="username" value="<?php  echo $fetch['username']  ?>" ></th>
+            <th><input type="text" name="email" value="<?php  echo $fetch['email']  ?>"></th>
         </tr>
     </table>
     <button type="submit" name="submit">Submit</button>
